@@ -10,7 +10,7 @@ from tensorflow.python.keras.layers import Input
 from tensorflow.python.keras.models import Model, load_model
 from tensorflow.python.keras.layers import Convolution2D
 from tensorflow.python.keras.layers import Dropout, Flatten, Dense, Cropping2D, Lambda
-from tensorflow.python.keras.callbacks import ModelCheckpoint, EarlyStopping
+from tensorflow.python.keras.callbacks import ModelCheckpoint, EarlyStopping, TensorBoard
 
 from donkeycar import util
 
@@ -45,7 +45,8 @@ class KerasPilot:
                                    verbose=verbose,
                                    mode='auto')
 
-        callbacks_list = [save_best]
+        # callbacks_list = [save_best]
+        callbacks_list = [save_best, TensorBoard(log_dir='./tmp/log')]
 
         if use_early_stop:
             callbacks_list.append(early_stop)
